@@ -20,6 +20,10 @@ public class OverloadingExample {
 				
 	}
 	
+	/*public int add(int a, int b) {
+		
+	}*/
+	
 	//varargs	
 	public void addition(int... a) {
 		int[] var = a;
