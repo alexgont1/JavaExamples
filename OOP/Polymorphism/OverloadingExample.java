@@ -8,7 +8,7 @@ public class OverloadingExample {
 		obj.add(5, 5);//for 2 arguments you call method with 2
 		obj.add(7, 7, 7);//here you call method with 3 arguments
 		
-		obj.addition(10,20,30,40);//for varargs
+		//obj.addition(10,20,30,40);//for varargs
 
 	}
 	
@@ -25,8 +25,8 @@ public class OverloadingExample {
 	}*/
 	
 	//varargs	
-	public void addition(int... a) {
-		int[] var = a;
-	}
+	//public void addition(int... a) {
+	//	int[] var = a;
+	//}
 
 }

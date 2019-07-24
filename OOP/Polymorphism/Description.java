@@ -6,7 +6,7 @@ package Polymorphism;
 //	(it's just different names, all they are the same)
 // 		Example: RBI class - 2 methods with same name BUT
 //	different method signature (parameters)
-//InterviewQst1: Can we achieve overloading by keeping the method
+//IQ1: Can we achieve overloading by keeping the method
 //signature and changing the return type? Answer: NO!!! We'll
 //get 'Duplicate method' error.
 //-----------------------------------------------
