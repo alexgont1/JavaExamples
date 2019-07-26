@@ -1,21 +1,22 @@
 package testCases;
 
-import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
-import org.openqa.selenium.ie.InternetExplorerDriver;
+public class TestBrowsers {	
 
-public class TestBrowsers {
-	
-	
-
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) {
 		
 		//To work with Firefox you must put in project 
 		//geckodriver (copy-paste exe file in project)
 		//OR BETTER TO SET SYSTEM PROPERTY:
-		//System.setProperty("webdriver.gecko.driver", "S:\\Selenium\\geckodriver.exe");
+		
 		//System.setProperty("webdriver.chrome.driver", "S:\\Selenium\\chromedriver.exe");
-		System.setProperty("webdriver.ie.driver", "S:\\Selenium\\IEDriverServerV3-6-32x.exe");
+		//System.setProperty("os.name","windows");
+		System.setProperty("webdriver.opera.driver", "S:\\Selenium\\operadriver.exe");
+		
+		//System.setProperty("webdriver.ie.driver", "S:\\Selenium\\IEDriverServerV3-6-32x.exe");
 		
 		//DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
         // this line of code is to resolve protected mode issue 
@@ -25,17 +26,21 @@ public class TestBrowsers {
 		//FirefoxDriver driver = new FirefoxDriver();
 		//ChromeDriver driver = new ChromeDriver();
 		
-		//Auto import libraries: CTRL+SHIFT+o
-		//options.ignoreZoomSettings();
-		InternetExplorerDriver driver = new InternetExplorerDriver();
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		OperaOptions options = new OperaOptions();
+		options.setBinary("C:\\Program Files\\Opera\\launcher.exe");
+		capabilities.setCapability(OperaOptions.CAPABILITY, options);
+		OperaDriver driver = new OperaDriver();
 		
-		//driver.wait(3000);		
+		//Auto import libraries: CTRL+SHIFT+o		
+		//driver.wait(3000);				
+		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-		
-		
+				
 		driver.get("https://www.google.com");
+		driver.findElementByLinkText("Store");
+		
+		System.out.println("Test is completed!");
 		
 		driver.close();
 		
