@@ -1,48 +1,39 @@
 package testCases;
 
-import org.openqa.selenium.opera.OperaDriver;
-import org.openqa.selenium.opera.OperaOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestBrowsers {	
+	
+	public static String browser = "ie";//choose here
+	public static WebDriver driver;
 
 	public static void main(String[] args) {
 		
-		//To work with Firefox you must put in project 
-		//geckodriver (copy-paste exe file in project)
-		//OR BETTER TO SET SYSTEM PROPERTY:
-		
-		//System.setProperty("webdriver.chrome.driver", "S:\\Selenium\\chromedriver.exe");
-		//System.setProperty("os.name","windows");
-		System.setProperty("webdriver.opera.driver", "S:\\Selenium\\operadriver.exe");
-		
-		//System.setProperty("webdriver.ie.driver", "S:\\Selenium\\IEDriverServerV3-6-32x.exe");
-		
-		//DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
-        // this line of code is to resolve protected mode issue 
-		//capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-        //capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		
-		//FirefoxDriver driver = new FirefoxDriver();
-		//ChromeDriver driver = new ChromeDriver();
-		
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-		OperaOptions options = new OperaOptions();
-		options.setBinary("C:\\Program Files\\Opera\\launcher.exe");
-		capabilities.setCapability(OperaOptions.CAPABILITY, options);
-		OperaDriver driver = new OperaDriver();
-		
-		//Auto import libraries: CTRL+SHIFT+o		
-		//driver.wait(3000);				
-		//driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		
-				
+		if (browser.equals("chrome")) {
+			WebDriverManager.chromedriver().setup();
+			driver = new ChromeDriver();
+		}else if(browser.equals("firefox")) {
+			WebDriverManager.firefoxdriver().setup();
+			driver = new FirefoxDriver();
+		}else if(browser.equals("ie")) {
+			WebDriverManager.iedriver().setup();
+			driver = new InternetExplorerDriver();
+		}
+						
 		driver.get("https://www.google.com");
-		driver.findElementByLinkText("Store");
+		
+		String title = driver.getTitle();
+		System.out.println(title+"; length="+title.length());
 		
 		System.out.println("Test is completed!");
 		
-		driver.close();
+		//driver.close();//close browser
+		driver.quit();//close browser+related in current session
 		
 		
 	
