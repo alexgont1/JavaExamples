@@ -48,7 +48,7 @@ public class DDLtests {
 		//OR SELECT USING VALUE or INDEX:
 		select.selectByValue("ja");
 		
-		//find all element options to print in report
+/*		//find all element options to print in report
 		List<WebElement> values = driver.findElements(By.tagName("option"));
 		System.out.println("Total values are: "+values.size());
 		//print 10th element of list
@@ -59,7 +59,27 @@ public class DDLtests {
 			//use 'lang' due to problem with different lang fonts
 			System.out.println(i+": "+values.get(i).getAttribute("lang"));
 		}
-				
+*/				
+/*		//print all links from web page
+		//1. find all 'a' tags
+		List<WebElement> vals = driver.findElements(By.tagName("a"));
+		System.out.println("Total values are: "+vals.size());
+		//2.print all 'a' tags text
+		for(int i=0; i<vals.size(); i++) {
+			System.out.println(i+": "+vals.get(i).getText()+"\t"+vals.get(i).getAttribute("href"));
+		}
+*/		
+		//print links from 1 section of web page
+		//select section:
+		WebElement block = driver.findElement(By.xpath("//*[@id=\"www-wikipedia-org\"]/div[6]/div[3]"));
+		List<WebElement> links = block.findElements(By.tagName("a"));
+		System.out.println("Total values are: "+links.size());
+		//2.print all 'a' tags text
+		for(int i=0; i<links.size(); i++) {
+			System.out.println(i+": "+links.get(i).getText()+"\t"+links.get(i).getAttribute("href"));
+		}
+
+		
 		//wait 3 sec and close browser
 		Thread.sleep(3000);
 		System.out.println("Test is completed!");
