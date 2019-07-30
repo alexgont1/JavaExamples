@@ -1,5 +1,6 @@
 package testCases;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -47,6 +48,17 @@ public class DDLtests {
 		//OR SELECT USING VALUE or INDEX:
 		select.selectByValue("ja");
 		
+		//find all element options to print in report
+		List<WebElement> values = driver.findElements(By.tagName("option"));
+		System.out.println("Total values are: "+values.size());
+		//print 10th element of list
+		System.out.println(values.get(11).getText());
+		
+		//print all options text
+		for(int i=0; i<values.size(); i++) {
+			//use 'lang' due to problem with different lang fonts
+			System.out.println(i+": "+values.get(i).getAttribute("lang"));
+		}
 				
 		//wait 3 sec and close browser
 		Thread.sleep(3000);
