@@ -1,0 +1,105 @@
+#################92
+How to find element on web page?
+	Fastest method: 	id
+2. name
+3. cssSelector
+4. Xpath
+
+5. className
+6. tagName
+7. linkText
+8.partialLinkText
+
+		Xpath
+Google mail - box for email address full input tag example:
+
+<input type="email" class="whsOnd zHQkBf" jsname="YPqjbf" autocomplete="username" spellcheck="false" tabindex="0" aria-label="Email or phone" name="identifier" value="" autocapitalize="none" id="identifierId" dir="ltr" data-initial-dir="ltr" data-initial-value="">
+
+There are some extensions for browsers to find Xpath easily, but you don't need them.
+
+Xpath always starts with // then tagName (relative Xpath):
+	//tagName[@attribute='value']
+
+So, for example above it will be: //input[@type='email']
+	OR: //input[@name='identifier'] 
+
+OR something else, BUT IT MUST BE UNIQUE ON CURRENT WEB PAGE
+
+1.You can check it in browser - Inspect element - ESC to see console
+$x("+YOUR XPATH"). Example: $x("//input[@name='identifier']")
+AND IN CONSOLE YOU'LL SEE HOW MANY SUCH ELEMENTS BROWSER FOUND. IT MUST BE ONLY 1. You can delete some part of Xpath to make it shorter - start from end.
+You can click on arrow near element and it will be shown on web page.
+
+2. Also Inspect and CTRL+F and paste your Xpath in line in the bottom.
+Browser will show you found element
+
+	CONCATENATION EXAMPLE:
+//input[@name='identifier'][@id='identifierId']
+OR //input[@name='identifier' and @id='identifierId']
+
+COMPLEX XPATH EXAMPLE:
+//a[contains(@id, 'ctl00_btnAircraftMapCell') and contains(@title, 'Select Seat')]
+	Which translates into:
+Get me all the anchor elements that have both: an id that contains 'ctl00_btnAircraftMapCell' AND a title that contains 'Select Seat'
+
+SOMETIMES YOU HAVE 2 ABSOLUTELY EQUAL ELEMENTS. YOU CAN USE INDEX:
+	(//input[@type='submit' and @class='button'] )[2]
+OR EACH OF SAME ELEMENT HAS DIFFERENT PARENTS, YOU CAN SHOW THEM:
+	//input[@type='submit' and @class='button'] ..    =1 UP TO PARENT WHICH IS DIV
+OR:
+	//input[@type='submit' and @class='button']/parent::div
+
+UNIVERSAL SOLUTION - JUST ADD PARENT IN FRONT OF YOUR XPATH TILL YOU REACH UNIQUE COMBINATION. EXAMPLE FROM QA.WAY2AUTOMATION.COM:
+	2 buttons: //input[@type='submit' and @class='button']   - you need bottom button
+1. 1 step up to div parent:
+	//div/input[@type='submit' and @class='button']       - still 2
+2. 1 step up to next parent and so on 
+	....
+till you find parent 'FORM' with unique class:
+	//form[@class='ajaxsubmit']/div/div/input[@type='submit' and @class='button']
+NOW THIS BUTTON IS UNIQUE.
+
+SOMETIMES PART OF ID IS CHANGING DYNAMICALLY. YOU CAN USE 'starts-with':
+	//input[starts-with(@id, 'iden')]
+OR:
+	//input[contains(@id, 'iden')]
+
+IF YOU DON'T KNOW ANYTHING EXCEPT TEXT OF ELEMENT:
+	//*[contains(text(), 'Signin')]
+OR:	//*[(text()='Signin')]
+"*" - means - any code can be before
+
+##################93
+IF YOU HAVE 2+ DIVS INSIDE 1 TO CHOOSE USE INDEX:
+	//html/body/div[1]/div[1]
+
+extension for Chrome - ChroPath
+
+##############94	CSS SELECTOR
+
+it's not better or worse, same opportunities as Xpath
+
+BUT IN CSS YOU CAN'T GO BACK TO PARENT, ONLY FORWARD
+AND YOU CAN'T LOCATE ELEMENT USING TEXT
+
+EXAMPLE:	input[id='identifierId']		- no @ and $$("") for browser console
+
+CONCATENATION: $$("input[id='123'][type='456']")
+
+START WITH: $$("input[id^='123']")
+
+ENDS WITH: $$("input[id$='123']")
+
+CONTAINS: $$("input[id*='123']")
+
+USING ID:		$$("#identifierId")
+
+USING CLASS NAME: $$(".x45D")	OR $$("div.g345")
+
+USING COMPLEX CLASS LIKE 'div class="x125 z897"':  $$(".x125.z897")
+
+USING CHILD: 	div.asdfsd.oiusj > div > div:first-child
+		div.asdfsd.oiusj > div > div:last-child
+		div.asdfsd.oiusj > div > div:nth-child
+
+COMPLEX EXAMPLE: div[djname='x123'] > div > div > div > div:nth-child(2)
