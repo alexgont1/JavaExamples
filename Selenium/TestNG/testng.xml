@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestNG Test">
+
+	<!-- <groups>
+		<run>
+			<include name="smoke"></include>
+		</run>
+	</groups> -->
+	
+	<groups>
+		<run>
+			<exclude name="smoke"></exclude>
+		</run>
+	</groups>
+
+	<test name="Test Groups">
+		<classes>
+			<class name="testCases.TestGroups" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Login Test">
+		<classes>
+			<class name="testCases.TestCase1" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Validate Title Test">
+		<classes>
+			<class name="testCases.TestCase2" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Dependency Test">
+		<classes>
+			<class name="testCases.TestCase3" />
+		</classes>
+	</test> <!-- Test -->
+
+</suite> <!-- Suite -->

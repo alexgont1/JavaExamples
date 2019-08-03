@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite">
+
+  <test name="Regression Login Test">
+    <classes>
+      <class name="regression.TestCase3"/>
+      <class name="regression.TestCase1"/>
+      <class name="testCases.TestCase2"/>
+      <class name="testCases.TestCase1"/>
+      <class name="testCases.TestCase3"/>
+    </classes>
+  </test> <!-- Test -->
+
+  <test name="Smoke Test">
+    <classes>
+      <class name="regression.TestCase3"/>
+      <class name="regression.TestCase1"/>
+      <class name="testCases.TestCase2"/>
+      <class name="testCases.TestCase1"/>
+      <class name="testCases.TestCase3"/>
+    </classes>
+  </test> <!-- Test -->  
+  
+</suite> <!-- Suite -->
