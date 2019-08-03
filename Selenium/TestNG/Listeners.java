@@ -15,6 +15,7 @@ public class Listeners implements ITestListener {
 
 	public void onTestFailure(ITestResult result) {
 		
+		System.setProperty("org.uncommons.reportng.escape-output","false");
 		System.out.println("Capture screenshot for failed test: "+result.getName());
 		Reporter.log("***TEST MESSAGE***");
 		Reporter.log("<a href='file:///S:/screenshot/A1.jpg' target='_blank'>Screenshot link");
