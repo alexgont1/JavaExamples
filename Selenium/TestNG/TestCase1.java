@@ -6,7 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class TestCase1 {
+public class TestCase1 extends BaseTest {
 	
 	//if you want to do smth. BEFORE EVERY test:
 	@BeforeMethod // !!! import from TestNG !!!
