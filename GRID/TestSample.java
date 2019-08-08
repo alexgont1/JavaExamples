@@ -2,6 +2,7 @@ package com.auto.GRID;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.LogManager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Platform;
@@ -10,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class TestSample {
 
@@ -30,7 +33,14 @@ public class TestSample {
 		//cap = DesiredCapabilities.chrome();
 		cap.setBrowserName("chrome");
 		cap.setPlatform(Platform.ANY);
+		
+		//hide red logs
+		LogManager.getLogManager().reset();
 		ChromeOptions options = new ChromeOptions();
+		System.setProperty("webdriver.chrome.args", "--disable-logging");
+		System.setProperty("webdriver.chrome.silentOutput", "true");
+		WebDriverManager.chromedriver().setup();
+		
 		options.merge(cap);
 		
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),cap);
