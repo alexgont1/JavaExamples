@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GRID test" parallel="tests">
+
+	<test name="GRID test1">
+		<classes>
+			<class name="com.auto.GRID.TestSample" />
+		</classes>
+	</test> <!-- Test -->
+	
+		<test name="GRID test2">
+		<classes>
+			<class name="com.auto.GRID.TestSample" />
+		</classes>
+	</test> <!-- Test -->
+
+</suite> <!-- Suite -->
