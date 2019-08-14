@@ -5,3 +5,4 @@ Here are:
 1. files and folders from 'src' Java Workspace folder
 2. examples of TestNG xml files
 3. some pom files
+4. Appium - mobile testing (setup and examples)
