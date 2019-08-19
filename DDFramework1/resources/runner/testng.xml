@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="TestNG Test">
+
+	<listeners>
+		<listener class-name="customListeners.Listeners"></listener>
+		<listener class-name="org.uncommons.reportng.HTMLReporter"></listener>
+	</listeners>
+
+
+	<!-- <groups> <run> <include name="smoke"></include> </run> </groups> -->
+
+	<test name="Test Groups">
+		<classes>
+			<class name="testCases.TestGroups" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Login Test">
+		<classes>
+			<class name="testCases.TestCase1" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Validate Title Test">
+		<classes>
+			<class name="testCases.TestCase2" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Failure Test">
+		<classes>
+			<class name="testCases.TestFailure" />
+		</classes>
+	</test>
+
+</suite> <!-- Suite -->
