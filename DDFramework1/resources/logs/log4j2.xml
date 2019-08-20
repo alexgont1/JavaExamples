@@ -29,8 +29,7 @@
 	</Appenders>
 	<Loggers>
 		<!-- name must be your package name to write in file -->
-		<Logger name="testCases" level="debug"
-			additivity="true">
+		<Logger name="testcases" level="debug" additivity="true">
 			<appender-ref ref="fileLogger" level="debug" />
 		</Logger>
 		<Root level="debug" additivity="false">
