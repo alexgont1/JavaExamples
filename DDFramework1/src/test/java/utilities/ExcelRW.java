@@ -39,6 +39,7 @@ public class ExcelRW {
 		}else {
 			dataOb = cell.getRawValue();
 		}
+		if (dataOb==null) return ""; 
 		return dataOb.toString();
 	}
 	

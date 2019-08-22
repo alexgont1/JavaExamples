@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="9" passed="9">
+  <reporter-output>
+  </reporter-output>
+  <suite name="DataDriven Testing" duration-ms="24014" started-at="2019-08-22T00:05:46Z" finished-at="2019-08-22T00:06:10Z">
+    <groups>
+    </groups>
+    <test name="Login Test" duration-ms="24014" started-at="2019-08-22T00:05:46Z" finished-at="2019-08-22T00:06:10Z">
+      <class name="testcases.LoginTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:testcases.LoginTest@1757cd72]" name="setup" is-config="true" duration-ms="10178" started-at="2019-08-22T00:05:36Z" finished-at="2019-08-22T00:05:46Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1390" started-at="2019-08-22T00:05:47Z" data-provider="getData" finished-at="2019-08-22T00:05:48Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1481" started-at="2019-08-22T00:05:48Z" data-provider="getData" finished-at="2019-08-22T00:05:49Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[x]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1523" started-at="2019-08-22T00:05:49Z" data-provider="getData" finished-at="2019-08-22T00:05:51Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[demouser]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1461" started-at="2019-08-22T00:05:51Z" data-provider="getData" finished-at="2019-08-22T00:05:52Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[a]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1504" started-at="2019-08-22T00:05:52Z" data-provider="getData" finished-at="2019-08-22T00:05:54Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[a]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[x]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1456" started-at="2019-08-22T00:05:54Z" data-provider="getData" finished-at="2019-08-22T00:05:55Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[a]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[demouser]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1591" started-at="2019-08-22T00:05:55Z" data-provider="getData" finished-at="2019-08-22T00:05:57Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[user@phptravels.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="1804" started-at="2019-08-22T00:05:57Z" data-provider="getData" finished-at="2019-08-22T00:05:59Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[user@phptravels.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[x]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Invalid Email or Password]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="LoginAsUser(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:testcases.LoginTest@1757cd72]" name="LoginAsUser" duration-ms="11462" started-at="2019-08-22T00:05:59Z" data-provider="getData" finished-at="2019-08-22T00:06:10Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[user@phptravels.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[demouser]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Hi, Demo User]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginAsUser -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:testcases.LoginTest@1757cd72]" name="tearDown" is-config="true" duration-ms="594" started-at="2019-08-22T00:06:10Z" finished-at="2019-08-22T00:06:11Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- testcases.LoginTest -->
+    </test> <!-- Login Test -->
+  </suite> <!-- DataDriven Testing -->
+</testng-results>

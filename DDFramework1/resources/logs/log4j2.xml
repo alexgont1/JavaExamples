@@ -1,40 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--MUST BE IN Project/src/test/resources/ -->
-<Configuration package="log4j.test" status="WARN">
-
-	<!-- file Path -->
-	<Properties>
-		<Property name="basePath">s:\\logs</Property>
-	</Properties>
-
-	<Appenders>
-		<RollingFile name="fileLogger"
-			fileName="${basePath}/app-info.log"
-			filePattern="${basePath}/app-info-
-			%d{yyyy-MM-dd}.log">
-			<PatternLayout>
-				<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
-				</pattern>
-			</PatternLayout>
-			<Policies>
-				<TimeBasedTriggeringPolicy interval="1"
-					modulate="true" />
-			</Policies>
-		</RollingFile>
-
-		<Console name="console" target="SYSTEM_OUT">
-			<PatternLayout
-				pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
-		</Console>
-	</Appenders>
-	<Loggers>
-		<!-- name must be your package name to write in file -->
-		<Logger name="testcases" level="debug" additivity="true">
-			<appender-ref ref="fileLogger" level="debug" />
-		</Logger>
-		<Root level="debug" additivity="false">
-			<appender-ref ref="console" />
-		</Root>
-	</Loggers>
-
+<Configuration status="WARN">
+    <Properties>
+        <Property name="logPath">s:/logs</Property>
+        <Property name="rollingFileName">app-info</Property>
+    </Properties>
+    
+    <Appenders>
+    
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%highlight{%-5level}] %d{yyyy-MM-dd_k-mm-ss} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
+        </Console>
+        
+        <RollingFile name="rollingFile" fileName="${logPath}/${rollingFileName}.log" filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd_k-mm}.log">
+            <PatternLayout pattern="[%highlight{%-5level}] %d{yyyy-MM-dd_k-mm-ss} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
+            <Policies>
+                <!-- Causes a rollover if the log file is older than the current JVM's start time -->
+                <OnStartupTriggeringPolicy />
+                <!-- Causes a rollover once the date/time pattern no longer applies to the active file -->
+              	<!-- <TimeBasedTriggeringPolicy interval="5" modulate="true" /> -->
+            </Policies>
+        </RollingFile>
+        
+    </Appenders>
+    
+    <Loggers>
+        <Root level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="rollingFile" />
+        </Root>
+    </Loggers>
 </Configuration>
