@@ -2,6 +2,7 @@ package testcases;
 
 import java.io.IOException;
 
+import org.junit.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -16,7 +17,8 @@ public class LoginTest extends BaseTest {
 	public void LoginAsUser(String email, String pass, String msg) {
 
 		page("loginPage");
-
+		Assert.assertTrue("Can't find Login Form",isElementPresent("1loginPageForm"));
+		
 		type("emailField", email);
 
 		type("passField", pass);

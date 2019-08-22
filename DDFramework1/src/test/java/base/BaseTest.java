@@ -42,9 +42,9 @@ public class BaseTest {
 	 * Jenkins
 	 */
 
-	//Project directory path:
+	// Project directory path:
 	public static String userDir = Paths.get(".").normalize().toAbsolutePath().toString();
-	
+
 	static {// logger log4j2.xml file location:
 		File log4j2File = new File(userDir + "\\resources\\logs\\log4j2.xml");
 		System.setProperty("log4j2.configurationFile", log4j2File.toURI().toString());
@@ -57,14 +57,14 @@ public class BaseTest {
 	public static FileInputStream fis;
 	public static MonitoringMail mail = new MonitoringMail();
 	public static WebDriverWait wait;
-	
+
 	// throws IOException - you can use it later:
 	// ExcelRW xl = new
 	// ExcelRW(System.getProperty("user_dir")+"\\src\\test\\resources\\excel\\testdata.xlsx");
 
 	@BeforeSuite // execute before run suite with all TCs
 	public void setup() throws IOException {
-		
+
 		log.info("*****Tests execution started*****");
 
 		if (driver == null) {
@@ -78,9 +78,9 @@ public class BaseTest {
 			log.info("OR.properties file loaded.");
 		}
 
-		//hide RED messages from WebDriver
+		// hide RED messages from WebDriver
 		java.util.logging.LogManager.getLogManager().reset();
-		
+
 		if (Config.getProperty("browser").equals("chrome")) {
 			// hide RED info messages from chromeDriver:
 			System.setProperty("webdriver.chrome.silentOutput", "true");
@@ -98,20 +98,31 @@ public class BaseTest {
 		// DBManager.setMysqlDBConnection();
 		// log.info("Connected to DB");
 
-		//set window position and size
-		driver.manage().window().setPosition(new Point(0,0));
-		driver.manage().window().setSize(new Dimension(1100,1055));
-		//driver.manage().window().maximize();
-		
+		// set window position and size
+		driver.manage().window().setPosition(new Point(0, 0));
+		driver.manage().window().setSize(new Dimension(1100, 1055));
+		// driver.manage().window().maximize();
+
 		// open Web site
 		driver.get(Config.getProperty("testSiteURL"));
 		log.info("Navigated to [" + Config.getProperty("testSiteURL") + "]");
 
-		//set waiting time
+		// set waiting time
 		driver.manage().timeouts().implicitlyWait(Integer.parseInt(Config.getProperty("implicit.wait")),
 				TimeUnit.SECONDS);
 		wait = new WebDriverWait(driver, Integer.parseInt(Config.getProperty("explicit.wait")));
 
+	}
+
+	public static boolean isElementPresent(String key) {
+		try {
+			driver.findElement(By.xpath(OR.getProperty(key)));
+			return true;
+		} catch (Exception e) {
+			log.info("Error while finding element: " + key);
+			log.info("Error message: " + e.getMessage());
+			return false;
+		}
 	}
 
 	// add short keywords for TCs:
@@ -133,24 +144,24 @@ public class BaseTest {
 			// Assert.fail("ERROR trying type to element ["+key+"]");
 		}
 	}
-	
+
 	public static void check(String key1, String key2, String d1, String d2, String expect) {
 		String actual;
 		try {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(key1))));
-		actual = driver.findElement(By.xpath(OR.getProperty(key1))).getText();
-		}catch (Exception e) {
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(key1))));
+			actual = driver.findElement(By.xpath(OR.getProperty(key1))).getText();
+		} catch (Exception e) {
 			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(key2))));
 			actual = driver.findElement(By.xpath(OR.getProperty(key2))).getText();
 		}
-		
+
 		if (expect.equals(actual)) {
-			log.info("["+d1+"/"+d2+"] - Expected: [" + expect + "], "+"Actual: [" + actual + "], Pass");
-		}else {
-			log.info("["+d1+"/"+d2+"] - Expected: [" + expect + "], "+"Actual: [" + actual + "], Fail!");
-		}			
+			log.info("[" + d1 + "/" + d2 + "] - Expected: [" + expect + "], " + "Actual: [" + actual + "], Pass");
+		} else {
+			log.info("[" + d1 + "/" + d2 + "] - Expected: [" + expect + "], " + "Actual: [" + actual + "], Fail!");
+		}
 	}
-	
+
 	public static void waitEx(String key) {
 		log.info("Waiting for [" + key + "]");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(OR.getProperty(key))));
@@ -158,22 +169,16 @@ public class BaseTest {
 
 	public static void start(String key) {
 		log.info("++++++++++++++++++++++++++++++");
-		log.info("***Run test: "+key+"***");
+		log.info("***Run test: " + key + "***");
 	}
-	
-	/*public static void confirmation(String key1, String key2) {		
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(OR.getProperty(key1))));
-		log.info("***Confirmation for "+key2+"***");
-		log.info("++++++++++++++++++++++++++++++");
-	}*/
-	
+
 	public static void refresh() {
 		driver.navigate().refresh();
 	}
-	
-	public static void page (String url) {
+
+	public static void page(String url) {
 		driver.get(OR.getProperty(url));
-		log.info("Navigated to ["+OR.getProperty(url)+"]");
+		log.info("Navigated to [" + OR.getProperty(url) + "]");
 	}
 
 	@AfterSuite // run after suite when all TCs are finished
