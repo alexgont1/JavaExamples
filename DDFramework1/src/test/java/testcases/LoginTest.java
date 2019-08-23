@@ -3,51 +3,45 @@ package testcases;
 import java.io.IOException;
 
 import org.junit.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import base.BaseTest;
-import utilities.ExcelRW;
+import utilities.testUtil;
 
 public class LoginTest extends BaseTest {
 
-	public static ExcelRW xl = null;
-
+	@BeforeTest
+	public void starting() {
+		start();
+	}
+	
 	@Test(dataProvider = "getData")
 	public void LoginAsUser(String email, String pass, String msg) {
 
 		page("loginPage");
-		Assert.assertTrue("Can't find Login Form",isElementPresent("1loginPageForm"));
-		
+		Assert.assertTrue("Can't find Login Form", isElementPresent("loginPageForm"));
+
 		type("emailField", email);
 
 		type("passField", pass);
 
-		clickEl("loginBtn");
+		click("loginBtn");
 
 		check("errorMsg", "confirm", email, pass, msg);
 
 	}
 
+	@AfterTest
+	public void LogOut() {
+		logout();
+		finish();
+	}
+
 	@DataProvider
 	public String[][] getData() throws IOException {
-		String fileName = userDir + Config.getProperty("data.login");
-		String sheetName = Config.getProperty("data.login.sheet");
-
-		// open file for reading
-		ExcelRW xl = new ExcelRW(fileName);
-		// Array without 1st row with column names:
-		int rows = xl.getRowCount(sheetName) - 1;
-		int cols = xl.getColsCount(sheetName);
-		String[][] data = new String[rows][cols];
-
-		// fill data from excel file
-		// count from 1 to rows and from 0 to cols-1
-		for (int i = 1; i <= rows; i++) {
-			for (int j = 0; j < cols; j++) {
-				data[i - 1][j] = xl.getCellData(sheetName, i, j);
-			}
-		}
-		return data;
+		return testUtil.getData("data.login", "data.login.sheet");
 	}
 }

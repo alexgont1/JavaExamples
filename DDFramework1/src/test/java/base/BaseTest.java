@@ -9,13 +9,18 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
@@ -26,20 +31,9 @@ import utilities.MonitoringMail;
 public class BaseTest {
 
 	/*
-	 *       Initializing: 
-	 * WebDriver +
-	 * Excel 
-	 * Logs +
-	 * Properties + 
-	 * TestNG +
-	 * JavaMail 
-	 * ReportNG
-	 * Database + 
-	 * Explicit and Implicit wait + 
-	 * Keywords +
-	 * Screenshots 
-	 * Maven - Build tool
-	 * Jenkins
+	 * Initializing: WebDriver + Excel Logs + Properties + TestNG + JavaMail
+	 * ReportNG Database + Explicit and Implicit wait + Keywords + Screenshots Maven
+	 * - Build tool Jenkins
 	 */
 
 	// Project directory path:
@@ -57,10 +51,17 @@ public class BaseTest {
 	public static FileInputStream fis;
 	public static MonitoringMail mail = new MonitoringMail();
 	public static WebDriverWait wait;
+	public static WebElement dropdown;
 
-	// throws IOException - you can use it later:
-	// ExcelRW xl = new
-	// ExcelRW(System.getProperty("user_dir")+"\\src\\test\\resources\\excel\\testdata.xlsx");
+	public static void finish() {
+		log.info("***Test is finished: " + (Thread.currentThread().getStackTrace()[2].getClassName().split("\\.")[1])+ "***");
+		log.info("++++++++++++++++++++++++++++++");
+	}
+	
+	public static void start() {
+		log.info("++++++++++++++++++++++++++++++");
+		log.info("***Run test: " + (Thread.currentThread().getStackTrace()[2].getClassName().split("\\.")[1])+ "***");
+	}
 
 	@BeforeSuite // execute before run suite with all TCs
 	public void setup() throws IOException {
@@ -117,6 +118,7 @@ public class BaseTest {
 	public static boolean isElementPresent(String key) {
 		try {
 			driver.findElement(By.xpath(OR.getProperty(key)));
+			log.info("Element is found: " + key);
 			return true;
 		} catch (Exception e) {
 			log.info("Error while finding element: " + key);
@@ -125,11 +127,48 @@ public class BaseTest {
 		}
 	}
 
+	public static boolean isWindowPresent(String key) {
+		Object A[] = driver.getWindowHandles().toArray();
+		boolean b = false;
+		String t;
+		for (int i = 0; i < A.length; i++) {
+			driver.switchTo().window((String) A[i]);
+			t = driver.getTitle().toString();
+			if (t.equals(OR.getProperty(key))) {
+				b = true;
+				break;
+			}
+		}
+		return b;
+	}
+
+	public static void getWindow(String key) {
+		Object A[] = null;
+		A = driver.getWindowHandles().toArray();
+		boolean b = false;
+		String t;
+		for (int i = 0; i < A.length; i++) {
+			driver.switchTo().window((String) A[i]);
+			t = driver.getTitle().toString();
+			if (t.equals(OR.getProperty(key))) {
+				b = true;
+				break;
+			}
+		}
+		if (b == false)
+			Assert.fail("ERROR trying find Window [" + key + "]");
+	}
+
 	// add short keywords for TCs:
-	public static void clickEl(String key) {
-		// any error will stop test execution with Exception:
-		driver.findElement(By.xpath(OR.getProperty(key))).click();
-		log.info("Click on [" + key + "]");
+	public static void click(String key) {
+		try {
+			driver.findElement(By.xpath(OR.getProperty(key))).click();
+			log.info("Click on [" + key + "]");
+		} catch (ElementClickInterceptedException e) {
+			cookies("cookies");
+			driver.findElement(By.xpath(OR.getProperty(key))).click();
+			log.info("2nd click after cookies");
+		}
 	}
 
 	public static void type(String key1, String key2) {
@@ -145,13 +184,19 @@ public class BaseTest {
 		}
 	}
 
+	public static void cookies(String key) {
+		waitClick(key);
+		click(key);
+		log.info("Click on cookies message button");
+	}
+
 	public static void check(String key1, String key2, String d1, String d2, String expect) {
 		String actual;
 		try {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(key1))));
+			waitEx(key1);
 			actual = driver.findElement(By.xpath(OR.getProperty(key1))).getText();
 		} catch (Exception e) {
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(OR.getProperty(key2))));
+			waitEx(key2);
 			actual = driver.findElement(By.xpath(OR.getProperty(key2))).getText();
 		}
 
@@ -162,18 +207,63 @@ public class BaseTest {
 		}
 	}
 
+	public static void select(String key1, String key2) {
+
+		dropdown = driver.findElement(By.xpath(OR.getProperty(key1)));
+		Select select = new Select(dropdown);
+		select.selectByVisibleText(OR.getProperty(key2));
+		log.info("Element select: [" + key1 + ":" + OR.getProperty(key2) + "]");
+	}
+
+	public static boolean isSelected(String key1, String key2) {
+
+		String selected = new Select(driver.findElement(By.xpath(OR.getProperty(key1)))).getAllSelectedOptions().get(0)
+				.getText();
+		if (selected.equals(OR.getProperty(key2))) {
+			log.info("Element selected: [" + selected + "]");
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public static void scroll(String key) throws InterruptedException {
+		WebElement element = driver.findElement(By.xpath(OR.getProperty(key)));
+		Actions actions = new Actions(driver);
+		actions.moveToElement(element);
+		actions.perform();
+		Thread.sleep(2000);
+	}
+
 	public static void waitEx(String key) {
+		log.info("Waiting for [" + key + "]");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(OR.getProperty(key))));
+	}
+
+	public static void waitClick(String key) {
 		log.info("Waiting for [" + key + "]");
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(OR.getProperty(key))));
 	}
 
-	public static void start(String key) {
-		log.info("++++++++++++++++++++++++++++++");
-		log.info("***Run test: " + key + "***");
-	}
-
 	public static void refresh() {
 		driver.navigate().refresh();
+	}
+
+	public static void login() {
+		driver.get(OR.getProperty("loginPage"));
+		waitEx("loginPageForm");
+		type("emailField", OR.getProperty("email"));
+		type("passField", OR.getProperty("pass"));
+		click("loginBtn");
+		Assert.assertTrue("Can't login", isElementPresent("confirm"));
+	}
+
+	public static void logout() {
+		waitEx("logoutDDMenu");
+		click("logoutDDMenu");
+		waitEx("logoutLink");
+		click("logoutLink");
+		Assert.assertTrue("Can't logout", isElementPresent("loginPageForm"));
 	}
 
 	public static void page(String url) {

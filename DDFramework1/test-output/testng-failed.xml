@@ -2,17 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite guice-stage="DEVELOPMENT" name="Failed suite [DataDriven Testing]">
   <listeners>
-    <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+    <listener class-name="listeners.TestListener"/>
   </listeners>
-  <test thread-count="5" name="Login Test(failed)">
+  <test thread-count="5" name="My Profile DDL Test(failed)">
     <classes>
-      <class name="testcases.LoginTest">
+      <class name="testcases.MyProfileTest">
         <methods>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="LoginAsUser" invocation-numbers="0 1 2 3 4 5 6 7 8"/>
+          <include name="MyProfileDDL"/>
         </methods>
-      </class> <!-- testcases.LoginTest -->
+      </class> <!-- testcases.MyProfileTest -->
     </classes>
-  </test> <!-- Login Test(failed) -->
+  </test> <!-- My Profile DDL Test(failed) -->
 </suite> <!-- Failed suite [DataDriven Testing] -->

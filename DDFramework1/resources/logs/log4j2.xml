@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
+
+<!-- uncomment this block to create new log file for each execution
     <Properties>
         <Property name="logPath">s:/logs</Property>
         <Property name="rollingFileName">app-info</Property>
-    </Properties>
+    </Properties> -->
     
     <Appenders>
     
@@ -11,22 +13,23 @@
             <PatternLayout pattern="[%highlight{%-5level}] %d{yyyy-MM-dd_k-mm-ss} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
         </Console>
         
+        <!-- uncomment this block to create new log file for each execution
         <RollingFile name="rollingFile" fileName="${logPath}/${rollingFileName}.log" filePattern="${logPath}/${rollingFileName}_%d{yyyy-MM-dd_k-mm}.log">
             <PatternLayout pattern="[%highlight{%-5level}] %d{yyyy-MM-dd_k-mm-ss} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
-            <Policies>
-                <!-- Causes a rollover if the log file is older than the current JVM's start time -->
-                <OnStartupTriggeringPolicy />
-                <!-- Causes a rollover once the date/time pattern no longer applies to the active file -->
-              	<!-- <TimeBasedTriggeringPolicy interval="5" modulate="true" /> -->
+            <Policies>        
+                <OnStartupTriggeringPolicy />        
             </Policies>
-        </RollingFile>
+        </RollingFile> -->
         
     </Appenders>
     
     <Loggers>
         <Root level="DEBUG" additivity="false">
             <AppenderRef ref="console" />
-            <AppenderRef ref="rollingFile" />
+
+<!-- uncomment this block to create new log file for each execution
+            <AppenderRef ref="rollingFile" /> -->
+            
         </Root>
     </Loggers>
 </Configuration>
