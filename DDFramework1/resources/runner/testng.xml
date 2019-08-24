@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="DataDriven Testing">
+
+	<listeners>
+		<listener class-name="listeners.TestListener"></listener>
+	</listeners>
+
+	<test name="Login Test">
+		<classes>
+			<class name="testcases.LoginTest" />
+		</classes>
+	</test>
+
+	<test name="Invoce Page Test">
+		<classes>
+			<class name="testcases.InvoiceTest" />
+		</classes>
+	</test>
+	
+	<test name="My Profile DDL Test">
+		<classes>
+			<class name="testcases.MyProfileTest" />
+		</classes>
+	</test>
+	
+
+</suite> <!-- Suite -->
