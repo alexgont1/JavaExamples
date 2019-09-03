@@ -1,7 +1,7 @@
 package com.auto.PageObjectModerFramework1;
 
 /**
- * Hello world!!!!!
+ *  world!!!!!
  *
  */
 public class App 
