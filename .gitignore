@@ -23,6 +23,7 @@ DDFramework1/*
 /PageObjectModelFramework1/src/test
 /PageObjectModelFramework1/target
 /PageObjectModelFramework1/test-output
+/PageObjectModelFramework1/.*
 
 
 # Office Temp Files
