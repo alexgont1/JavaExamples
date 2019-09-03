@@ -19,8 +19,8 @@ DDFramework1/*
 #!PageObjectModelFramework1/src/test/java/listeners
 #!PageObjectModelFramework1/src/test/java/testcases
 #!PageObjectModelFramework1/resources
-/PageObjectModelFramework1/src/main/**/
-/PageObjectModelFramework1/src/test/**/
+/PageObjectModelFramework1/src/main
+/PageObjectModelFramework1/src/test
 /PageObjectModelFramework1/target
 /PageObjectModelFramework1/test-output
 /PageObjectModelFramework1/.settings
