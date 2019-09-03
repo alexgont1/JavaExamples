@@ -11,14 +11,19 @@ DDFramework1/*
 !DDFramework1/resources
 
 #Project 2 files/folders
-PageObjectModelFramework1/**/*
-!PageObjectModelFramework1/pom.xml
-!PageObjectModelFramework1/src/main/java/**/*
-!PageObjectModelFramework1/src/test/java/**/*
+#PageObjectModelFramework1/**/*
+#!PageObjectModelFramework1/pom.xml
+#!PageObjectModelFramework1/src/main/java/**/*
+#!PageObjectModelFramework1/src/test/java/**/*
 #!PageObjectModelFramework1/src/test/java/base
 #!PageObjectModelFramework1/src/test/java/listeners
 #!PageObjectModelFramework1/src/test/java/testcases
 #!PageObjectModelFramework1/resources
+/PageObjectModelFramework1/src/main
+/PageObjectModelFramework1/src/test
+/PageObjectModelFramework1/target
+/PageObjectModelFramework1/test-output
+
 
 # Office Temp Files
 ~$*
