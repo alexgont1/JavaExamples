@@ -2,13 +2,23 @@
 [Tt]humbs.db
 *.DS_Store
 
-#Project files/folders
+#Project 1 files/folders
 DDFramework1/*
 !DDFramework1/pom.xml
 !DDFramework1/src/test/java/base
 !DDFramework1/src/test/java/listeners
 !DDFramework1/src/test/java/testcases
 !DDFramework1/resources
+
+#Project 2 files/folders
+PageObjectModelFramework1/*
+!PageObjectModelFramework1/pom.xml
+!PageObjectModelFramework1/src/test/java
+!PageObjectModelFramework1/src/main/java
+#!PageObjectModelFramework1/src/test/java/base
+#!PageObjectModelFramework1/src/test/java/listeners
+#!PageObjectModelFramework1/src/test/java/testcases
+#!PageObjectModelFramework1/resources
 
 # Office Temp Files
 ~$*
