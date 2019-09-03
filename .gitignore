@@ -23,7 +23,9 @@ DDFramework1/*
 /PageObjectModelFramework1/src/test
 /PageObjectModelFramework1/target
 /PageObjectModelFramework1/test-output
-/PageObjectModelFramework1/.*
+/PageObjectModelFramework1/.settings
+/PageObjectModelFramework1/.classpath
+/PageObjectModelFramework1/.project
 
 
 # Office Temp Files
