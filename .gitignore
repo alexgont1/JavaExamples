@@ -26,8 +26,6 @@ PageObjectModelFramework1/test-output
 PageObjectModelFramework1/.settings
 PageObjectModelFramework1/.classpath
 PageObjectModelFramework1/.project
-!**/src/main/java
-!**/src/test/java
 
 
 # Office Temp Files
