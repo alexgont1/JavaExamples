@@ -21,11 +21,11 @@ DDFramework1/*
 #!PageObjectModelFramework1/resources
 #PageObjectModelFramework1/src/main/*
 #PageObjectModelFramework1/src/test/*
-PageObjectModelFramework1/target
-PageObjectModelFramework1/test-output
-PageObjectModelFramework1/.settings
-PageObjectModelFramework1/.classpath
-PageObjectModelFramework1/.project
+/**/target
+/**/test-output
+/**/.settings
+/**/.classpath
+/**/.project
 
 
 # Office Temp Files
