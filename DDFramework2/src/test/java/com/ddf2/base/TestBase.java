@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -16,10 +18,11 @@ public class TestBase {
 	// WebDriver
 	// Properties
 	// Logs
-	// ExtentReports
+	// ExtentReports, ReportNG
 	// DB
 	// Excel
 	// Mail
+	// Jenkins
 
 	public static WebDriver driver;
 
@@ -44,11 +47,25 @@ public class TestBase {
 			or.load(fis);
 		}
 
+		if (config.getProperty("browser").equals("chrome")) {
+			// chromedriver file is in executables folder:
+			System.setProperty("webdriver.chrome.driver", (userDir + fs + "src" + fs + "test" + fs + "resources" + fs
+					+ "executables" + fs + "chromedriver.exe"));
+			driver = new ChromeDriver();
+		} else if (config.getProperty("browser").equals("firefox")) {
+			System.setProperty("webdriver.gecko.driver", "gecko.exe");
+		}
+
+		driver.get(config.getProperty("homeUrl"));
+		// driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implWait")), TimeUnit.SECONDS);
+
 	}
 
 	@AfterSuite
 	public void tearDown() {
 
+		driver.quit();
 	}
 
 }
