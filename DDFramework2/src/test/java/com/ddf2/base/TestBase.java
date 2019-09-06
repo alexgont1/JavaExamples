@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -32,13 +35,24 @@ public class TestBase {
 	// Project directory path:
 	public static String userDir = Paths.get(".").normalize().toAbsolutePath().toString();
 	public static String fs = File.separator;
-	public static String configPath = userDir + fs + "src" + fs + "test" + fs + "resources" + fs + "properties" + fs
-			+ "Config.properties";
-	public static String orPath = userDir + fs + "src" + fs + "test" + fs + "resources" + fs + "properties" + fs
-			+ "OR.properties";
+
+	// get absolute file path for current Project/OS
+	public static String filePath(String filePathNonFormat) {
+		String path = userDir;
+		Pattern pattern = Pattern.compile("[a-zA-Z.]+");
+		Matcher matcher = pattern.matcher(filePathNonFormat);
+		while (matcher.find()) {
+			path = path + fs + matcher.group(0);
+		}
+		return path;
+	}
+
+	public static String configPath = filePath("src/test/resources/properties/Config.properties");
+	public static String orPath = filePath("src/test/resources/properties/OR.properties");
 	public static Properties config = new Properties();
 	public static Properties or = new Properties();
 	public static FileInputStream fis;
+	public static WebDriverWait wait;
 
 	static {// logger log4j2.xml file location:
 		File log4j2File = new File(
@@ -76,6 +90,7 @@ public class TestBase {
 		log.info("Home page is open");
 		// driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Integer.parseInt(config.getProperty("implWait")), TimeUnit.SECONDS);
+		wait = new WebDriverWait(driver,Integer.parseInt(config.getProperty("explWait")));
 
 	}
 

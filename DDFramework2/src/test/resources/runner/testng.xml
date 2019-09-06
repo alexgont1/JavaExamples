@@ -8,5 +8,11 @@
 		</classes>
 	</test>
 
+	<test name="Add Customer Test">
+		<classes>
+			<class name="com.ddf2.testcases.AddCustomerTest" />
+		</classes>
+	</test>
+
 
 </suite> <!-- Suite -->
