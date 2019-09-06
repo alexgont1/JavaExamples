@@ -13,9 +13,6 @@ public class LoginTest extends TestBase {
 
 		driver.findElement(By.xpath(or.getProperty("managerLoginBtn"))).click();
 		Assert.assertTrue(isElementPresent("addCustomerBtn"));
-		
-		String fp = TestBase.filePath(or.getProperty("addCustTestFile"));		
-		System.out.println(fp);
 
 		//Thread.sleep(3000);
 	}
