@@ -14,14 +14,16 @@ import com.ddf2.base.TestBase;
 //source: TestNGListenerOnFailure
 public class testUtil extends TestBase {
 
-	public static void captureScreenshot(String methodName, String screenshotPath) throws IOException {
+	public static String captureScreenshot(String methodName, String screenshotPath) throws IOException {
 
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String screenshotFilePath = screenshotPath + fs + dateForm() + "_" + methodName + ".jpg";
 		try {
-			FileUtils.copyFile(scrFile, new File(screenshotPath + "/" + dateForm() + "_" + methodName + ".jpg"));
+			FileUtils.copyFile(scrFile, new File(screenshotFilePath));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return screenshotFilePath;
 	}
 
 	// make zip of reports
