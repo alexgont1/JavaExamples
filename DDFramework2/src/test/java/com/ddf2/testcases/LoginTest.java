@@ -19,14 +19,7 @@ public class LoginTest extends TestBase {
 
 		Reporter.log("Login successfully executed");
 
-		// you can see link and screenshot in emailable-report.html
-		Reporter.log("<a href='file:///S:/screenshot/A1.jpg' target='_blank'>Screenshot link");
-		Reporter.log(
-				"<a href='file:///S:/screenshot/A1.jpg' target='_blank'><img height=100 src='file:///S:/screenshot/A1.jpg'>");
-
-		// if you want to see the same in html/index.html you must add:
-		System.setProperty("org.uncommons.reportng.escape-output", "false");
-
+		Assert.fail("Fail!!!");
 
 		// Thread.sleep(3000);
 	}
