@@ -95,7 +95,7 @@ public class TestBase {
 
 	public static boolean isElementPresent(String key) {
 		try {
-			driver.findElement(By.xpath(or.getProperty(key)));
+			driver.findElement(By.xpath(key));
 			log.info("Element is found: " + key);
 			return true;
 		} catch (Exception e) {
