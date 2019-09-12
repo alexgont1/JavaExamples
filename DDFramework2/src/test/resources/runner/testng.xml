@@ -21,4 +21,10 @@
 		</classes>
 	</test>
 
+	<test name="Open Account Test">
+		<classes>
+			<class name="com.ddf2.testcases.OpenAccountTest" />
+		</classes>
+	</test>
+
 </suite> <!-- Suite -->

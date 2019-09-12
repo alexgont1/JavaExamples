@@ -2,13 +2,17 @@ package com.ddf2.utilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.testng.annotations.DataProvider;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
 import com.ddf2.base.TestBase;
 
 //source: TestNGListenerOnFailure
@@ -24,6 +28,13 @@ public class testUtil extends TestBase {
 			e.printStackTrace();
 		}
 		return screenshotFilePath;
+	}
+
+	public static void snapshot() throws IOException {
+		String base64Screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
+		MediaEntityModelProvider mediaModel = MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot)
+				.build();
+		logger.fail("Failed Snapshot: ", mediaModel);
 	}
 
 	// make zip of reports
@@ -47,12 +58,12 @@ public class testUtil extends TestBase {
 		return formDate;
 	}
 
-	public static String[][] getData(String file, String sheet) throws IOException {
-		// String fileName = userDir + Config.getProperty(file);
-		// String sheetName = Config.getProperty(sheet);
+	@DataProvider(name = "dp")
+	public static String[][] getData(Method m) throws IOException {
 
+		String sheet = m.getName();
 		// open file for reading
-		ExcelRW xl = new ExcelRW(file);
+		ExcelRW xl = new ExcelRW(xlDataProvider);
 		// Array without 1st row with column names:
 		int rows = xl.getRowCount(sheet) - 1;
 		int cols = xl.getColsCount(sheet);

@@ -20,6 +20,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -35,6 +36,7 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.ddf2.utilities.ExtentManager;
+import com.ddf2.utilities.testUtil;
 
 public class TestBase {
 
@@ -77,6 +79,7 @@ public class TestBase {
 	public ExtentReports rep = ExtentManager.getInstance();
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentTest logger;
+	public static String xlDataProvider;
 
 	static {// logger log4j2.xml file location:
 		File log4j2File = new File(filePath("src/test/resources/logs/log4j2.xml"));
@@ -96,6 +99,7 @@ public class TestBase {
 			config.load(fis);
 			fis = new FileInputStream(orPath);
 			or.load(fis);
+			xlDataProvider = filePath(or.getProperty("xlDataProvider"));
 		}
 
 		if (config.getProperty("browser").equals("chrome")) {
@@ -126,14 +130,26 @@ public class TestBase {
 
 	}
 
+	public static void softAssert(String expected, String actual) throws IOException {
+		try {
+			Assert.assertEquals(expected, actual);
+		} catch (Throwable t) {
+			// add screenshot
+			logger.fail("Verificaton failed. Error: "+t);
+			testUtil.snapshot();
+		}
+	}
+
 	public void click(String locator) {
 		driver.findElement(By.xpath(or.getProperty(locator))).click();
 		log.info("Clicking on: " + locator);
+		logger.info("Clicking on: " + locator);
 	}
 
 	public void type(String locator, String keys) {
 		driver.findElement(By.xpath(or.getProperty(locator))).sendKeys(keys);
-		log.info("Typing " + keys + " on: " + locator);
+		log.info("Typing " + keys + " in: " + locator);
+		logger.info("Typing " + keys + " in: " + locator);
 	}
 
 	public static boolean isElementPresent(String key) {

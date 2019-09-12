@@ -1,11 +1,8 @@
 package com.ddf2.testcases;
 
-import java.io.IOException;
-
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.ddf2.base.TestBase;
@@ -19,13 +16,13 @@ public class AddCustomerTest extends TestBase {
 		Assert.assertEquals(driver.getTitle(), "Protractor practice website - Banking App");
 	}
 
-	@Test(priority = 3, dataProvider = "getData")
-	public void addCustomer(String firstName, String lastName, String postCode, String alertText)
+	@Test(priority = 3, dataProviderClass = testUtil.class, dataProvider = "dp")
+	//method name below MUST be = sheet name with data in Excel file
+	public void addCustomerTest(String firstName, String lastName, String postCode, String alertText)
 			throws InterruptedException {
 		logger = rep.createTest("Alert 222");
 
 		click("addCustomerBtn");
-
 		type("firstName", firstName);
 		type("lastName", lastName);
 		type("postCode", postCode);
@@ -55,11 +52,6 @@ public class AddCustomerTest extends TestBase {
 		Assert.assertTrue(alrt);
 		logger.createNode("Alert is not Present");
 		Assert.assertFalse(alrt);
-	}
-
-	@DataProvider
-	public Object[][] getData() throws IOException {
-		return testUtil.getData(or.getProperty("addCustTestFile"), or.getProperty("addCustTestSheet"));
 	}
 
 }
