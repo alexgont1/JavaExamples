@@ -28,6 +28,7 @@ DDFramework1/*
 /**/.project
 /**/chromedriver.exe
 /**/executables
+/**/Screenshots
 
 # Office Temp Files
 ~$*

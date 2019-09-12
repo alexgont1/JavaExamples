@@ -9,7 +9,7 @@
 			class-name="org.uncommons.reportng.JUnitXMLReporter"></listener>
 	</listeners>
 
-	<test name="Login Test">
+	<test name="Login Test1">
 		<classes>
 			<class name="com.ddf2.testcases.LoginTest" />
 		</classes>
@@ -20,6 +20,5 @@
 			<class name="com.ddf2.testcases.AddCustomerTest" />
 		</classes>
 	</test>
-
 
 </suite> <!-- Suite -->
