@@ -78,4 +78,22 @@ public class testUtil extends TestBase {
 		}
 		return data;
 	}
+
+	public static boolean isTestRun(String testName) throws IOException {
+		ExcelRW xl = new ExcelRW(xlDataProvider);
+		int testRow = 1;
+		int rows = xl.getRowCount("TestSuite");
+		while (!xl.getCellData("TestSuite", testRow, 0).equals(testName)) {
+			testRow++;
+			if (testRow>rows) {
+				System.out.println("Didn't find test: "+testName);
+				break;
+			}
+		}
+		if (xl.getCellData("TestSuite", testRow, 1).equalsIgnoreCase("y")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

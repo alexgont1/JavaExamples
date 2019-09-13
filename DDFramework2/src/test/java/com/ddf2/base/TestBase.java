@@ -77,12 +77,14 @@ public class TestBase {
 	public static Properties or = new Properties();
 	public static FileInputStream fis;
 	public static WebDriverWait wait;
+	static WebElement dropdown;
 	// extentReport:
 	public ExtentReports rep = ExtentManager.getInstance();
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentTest logger;
+	//data provider
 	public static String xlDataProvider;
-	static WebElement dropdown;
+
 
 	static {// logger log4j2.xml file location:
 		File log4j2File = new File(filePath("src/test/resources/logs/log4j2.xml"));
