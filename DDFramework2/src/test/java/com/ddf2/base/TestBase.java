@@ -17,8 +17,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -80,6 +82,7 @@ public class TestBase {
 	public static ExtentHtmlReporter htmlReporter;
 	public static ExtentTest logger;
 	public static String xlDataProvider;
+	static WebElement dropdown;
 
 	static {// logger log4j2.xml file location:
 		File log4j2File = new File(filePath("src/test/resources/logs/log4j2.xml"));
@@ -150,6 +153,14 @@ public class TestBase {
 		driver.findElement(By.xpath(or.getProperty(locator))).sendKeys(keys);
 		log.info("Typing " + keys + " in: " + locator);
 		logger.info("Typing " + keys + " in: " + locator);
+	}
+	
+	public void select(String locator, String value) {
+		dropdown = driver.findElement(By.xpath(or.getProperty(locator)));
+		Select select = new Select(dropdown);
+		select.selectByVisibleText(value);
+		log.info("Selecting " + value + " in dropdown: " + locator);
+		logger.info("Selecting " + value + " in dropdown: " + locator);
 	}
 
 	public static boolean isElementPresent(String key) {
