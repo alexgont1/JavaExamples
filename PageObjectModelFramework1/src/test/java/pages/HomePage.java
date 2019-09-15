@@ -24,6 +24,7 @@ public class HomePage extends Page {
 	}
 
 	public void goToLogin() {
+		click("goToLogin");
 	}
 
 	public void goToFreeSignUp() {

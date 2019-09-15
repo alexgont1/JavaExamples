@@ -13,6 +13,6 @@ public class CustomersTest extends Page {
 		HomePage home = new HomePage();
 		home.goToCustomers();
 
-		Page.topNav.doSearch("test");
+		//Page.topNav.doSearch("test");
 	}
 }

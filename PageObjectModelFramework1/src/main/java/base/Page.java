@@ -24,6 +24,8 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import pages.TopNavigation;
+
 public class Page {
 
 	public static WebDriver driver;
@@ -153,7 +155,7 @@ public class Page {
 	public void tearDown() {
 		// close Extent Report
 		// rep.flush();
-		driver.quit();
+		//driver.quit();
 		log.info("***Test suite is finished***");
 	}
 }

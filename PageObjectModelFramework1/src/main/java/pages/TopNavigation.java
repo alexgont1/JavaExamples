@@ -1,4 +1,4 @@
-package base;
+package pages;
 
 public class TopNavigation {
 	
