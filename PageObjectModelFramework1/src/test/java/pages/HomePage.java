@@ -1,7 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
-
 import base.Page;
 
 public class HomePage extends Page {
@@ -14,12 +12,37 @@ public class HomePage extends Page {
 
 	public CustomersPage goToCustomers() {
 
-		driver.findElement(By.className("zh-customers")).click();
+		click("goToCustomers");
 		return new CustomersPage();
 	}
 
-	public void createAccoutn() {
-
+	public void goToSupport() {
+		click("goToSupport");
 	}
 
+	public void goToContactSales() {
+	}
+
+	public void goToLogin() {
+	}
+
+	public void goToFreeSignUp() {
+	}
+
+	public void goToMail() {
+	}
+
+	public void goToBooks() {
+	}
+
+	public void goToCreator() {
+	}
+
+	public void goToAnalytics() {
+	}
+
+	// ...
+
+	public void validateFooterLinks() {
+	}
 }

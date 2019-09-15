@@ -1,13 +1,15 @@
 package rough;
 
-import pages.LoginPage;
+import java.io.IOException;
 
-public class TestLogin {
+import pages.HomePage;
 
-	public static void main(String[] args) {
+public class TestLogin{
 
-		LoginPage login = new LoginPage();
-		login.doLogin("user", "pass");
+	public static void main(String[] args) throws IOException {
+		
+		HomePage home = new HomePage();
+		home.goToCustomers();
 
 	}
 

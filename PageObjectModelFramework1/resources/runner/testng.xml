@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Page Object Model">
+<suite name="Page Object Model Framework - 1">
 
 	<listeners>
 		<listener class-name="listeners.TestListener"></listener>
 	</listeners>
 
-	<test name="Customers Page Test">
+	<test name="Home Page Test">
 		<classes>
 			<class name="testcases.CustomersTest" />
 		</classes>
