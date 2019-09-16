@@ -1,6 +1,5 @@
 package rough;
 
-import base.Page;
 import pages.HomePage;
 
 public class TestCustomers {
@@ -22,9 +21,6 @@ public class TestCustomers {
 		//HomePage h = new HomePage();
 		//CustomersPage c = h.goToCustomers();
 		//c.goToAboutUs();
-		
-		//search:
-		Page.topNav.doSearch("test");
 		
 	}
 }

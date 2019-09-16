@@ -24,15 +24,13 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import pages.TopNavigation;
-
 public class Page {
 
 	public static WebDriver driver;
 
 	// if you have the same navigation pane on each page
 	// you can declare it here (+create class) and call in any TC:
-	public static TopNavigation topNav;
+	public static CRMTopMenu topCRM;
 	// file separator for path independent from OS
 	public static String fs = File.separator;
 
@@ -105,7 +103,7 @@ public class Page {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.get("https://www.zoho.com/");
 			// using navigation pane:
-			topNav = new TopNavigation();
+			topCRM = new CRMTopMenu();
 		}
 	}
 

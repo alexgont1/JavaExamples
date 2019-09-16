@@ -18,9 +18,5 @@ public class CustomersPage extends Page {
 		//instance in testCase 
 		return new AboutUsPage();
 	}
-	
-	public void doCustomerSearch(String customerName) {
-		topNav.doSearch(customerName);
-	}
 
 }
