@@ -10,9 +10,9 @@ public class LoginPage extends Page {
 	// properties
 	//
 
-	public void doLogin(String userName, String password) {
+	public ZohoAppPage doLogin(String userName, String password) {
 
-		// type("email","gggg@fff.com");
+		return new ZohoAppPage();
 	}
 
 	public void doSignInWithGoogle() {

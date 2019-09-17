@@ -2,6 +2,8 @@ package base;
 
 import java.io.IOException;
 
+import pages.crm.accounts.AccountsPage;
+
 //this top CRM menu is encapsulated in all CRM pages
 public class CRMTopMenu extends Page {// so you can't extend Page
 
@@ -27,11 +29,12 @@ public class CRMTopMenu extends Page {// so you can't extend Page
 	public void goToContacts() {
 	}
 
-	public void goToAccounts() throws IOException {
+	public AccountsPage goToAccounts() throws IOException {
 		// driver.findElement(By.xpath("CRMdropBtn")).click();
 		click("CRMdropBtn");
 		click("CRMddbGoToAccounts");
 		softAssert(isElementPresent("CRMaccountsPageAssertion"),true);
+		return new AccountsPage();
 	}
 
 	// ...

@@ -6,9 +6,10 @@ import base.Page;
 
 public class AccountsPage extends Page{	
 	
-	public void goToCreateAccount() throws IOException {	
+	public CreateAccountPage goToCreateAccount() throws IOException {	
 		click("newAccountBtn");
 		softAssert(isElementPresent("CRMnewAccountPageAssertion"),true);
+		return new CreateAccountPage();
 	}
 	
 	public void goToImportAccounts() {		

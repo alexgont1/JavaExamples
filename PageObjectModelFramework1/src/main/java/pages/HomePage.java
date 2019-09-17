@@ -23,8 +23,9 @@ public class HomePage extends Page {
 	public void goToContactSales() {
 	}
 
-	public void goToLogin() {
+	public LoginPage goToLogin() {
 		click("goToLogin");
+		return new LoginPage();
 	}
 
 	public void goToFreeSignUp() {

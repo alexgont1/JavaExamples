@@ -4,8 +4,9 @@ import base.Page;
 
 public class ZohoAppPage extends Page {
 	
-	public void goToCRM() {		
+	public CRMHomePage goToCRM() {		
 		click("CRM");
+		return new CRMHomePage();
 	}
 	
 	public void goToProjects() {
