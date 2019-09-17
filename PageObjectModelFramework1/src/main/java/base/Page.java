@@ -103,13 +103,14 @@ public class Page {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 			driver.get("https://www.zoho.com/");
 			// using navigation pane:
+			//topCRM = new CRMTopMenu(driver);
 			topCRM = new CRMTopMenu();
 		}
 	}
 
-	public static void softAssert(String expected, String actual) throws IOException {
+	public static void softAssert(Object expected, Object actual) throws IOException {
 		try {
-			Assert.assertEquals(expected, actual);
+			Assert.assertEquals(expected.toString(), actual.toString());
 		} catch (Throwable t) {
 			// add screenshot
 			// logger.fail("Verificaton failed. Error: "+t);
@@ -139,7 +140,7 @@ public class Page {
 
 	public static boolean isElementPresent(String key) {
 		try {
-			driver.findElement(By.xpath(key));
+			driver.findElement(By.xpath(or.getProperty(key)));
 			log.info("Element is found: " + key);
 			return true;
 		} catch (Exception e) {
