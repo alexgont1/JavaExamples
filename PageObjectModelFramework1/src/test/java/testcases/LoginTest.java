@@ -16,6 +16,9 @@ public class LoginTest extends Page {
 	@Test
 	public void goToCustomersPage() throws InterruptedException, IOException {
 
+		//to see messages in Extent Report-below line is mandatory
+		logger = rep.createTest("LoginTest");
+		
 		HomePage home = new HomePage();
 		LoginPage lp = home.goToLogin();
 

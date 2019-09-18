@@ -11,10 +11,13 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.testng.annotations.DataProvider;
 
+import com.aventstack.extentreports.MediaEntityBuilder;
+import com.aventstack.extentreports.MediaEntityModelProvider;
+
 import base.Page;
 
 //source: TestNGListenerOnFailure
-public class testUtil extends Page {
+public class Utils extends Page {
 
 	public static String captureScreenshot(String methodName, String screenshotPath) throws IOException {
 
@@ -28,13 +31,13 @@ public class testUtil extends Page {
 		return screenshotFilePath;
 	}
 
-	//Extent Report snapshot
-	/*public static void snapshot() throws IOException {
+	// Extent Report snapshot
+	public static void snapshot() throws IOException {
 		String base64Screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 		MediaEntityModelProvider mediaModel = MediaEntityBuilder.createScreenCaptureFromBase64String(base64Screenshot)
 				.build();
 		logger.fail("Failed Snapshot: ", mediaModel);
-	}*/
+	}
 
 	// make zip of reports
 	/*
@@ -78,15 +81,15 @@ public class testUtil extends Page {
 		return data;
 	}
 
-	//filtering test execution using TestSuite page from Excel file
+	// filtering test execution using TestSuite page from Excel file
 	public static boolean isTestRun(String testName) throws IOException {
 		ExcelRW xl = new ExcelRW(xlDataProvider);
 		int testRow = 1;// 0 row contains titles
 		int rows = xl.getRowCount("TestSuite");
 		while (!xl.getCellData("TestSuite", testRow, 0).equals(testName)) {
 			testRow++;
-			if (testRow>rows) {
-				System.out.println("Didn't find test: "+testName);
+			if (testRow > rows) {
+				System.out.println("Didn't find test: " + testName);
 				break;
 			}
 		}
